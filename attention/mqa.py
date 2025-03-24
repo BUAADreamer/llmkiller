@@ -12,8 +12,8 @@ class MultiQuerySelfAttention(nn.Module):
         self.head_dim = dim//num_heads
         
         self.q_proj = nn.Linear(dim, dim)
-        self.k_proj = nn.Linear(self.head_dim, self.head_dim)
-        self.v_proj = nn.Linear(self.head_dim, self.head_dim)
+        self.k_proj = nn.Linear(dim, self.head_dim)
+        self.v_proj = nn.Linear(dim, self.head_dim)
         self.o_proj = nn.Linear(dim, dim)
         
         self.scale_ratio = self.head_dim ** -0.5
@@ -22,8 +22,8 @@ class MultiQuerySelfAttention(nn.Module):
         bs, seq_len, _ = x.size()
         
         q = self.q_proj(x).reshape(bs, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
-        k = self.k_proj(x.reshape(bs, seq_len, self.num_heads, self.head_dim)).transpose(1, 2)
-        v = self.v_proj(x.reshape(bs, seq_len, self.num_heads, self.head_dim)).transpose(1, 2)
+        k = self.k_proj(x).reshape(bs, seq_len, 1, self.head_dim).transpose(1, 2)
+        v = self.v_proj(x).reshape(bs, seq_len, 1, self.head_dim).transpose(1, 2)
         
         attn_weights = torch.matmul(q, k.transpose(-1,-2)) * self.scale_ratio
         if masks is not None:
