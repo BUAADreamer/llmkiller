@@ -13,13 +13,13 @@ class BatchNorm2d(nn.Module):
         self.register_buffer('running_mean', torch.zeros(num_features))
         self.register_buffer('running_var', torch.ones(num_features))
         
-    def forward(self, x):
+    def __call__(self, x):
         # x: [b, c, h, w]
         if self.training:
             # 在batch维度上计算均值和方差 (对每个通道)
             batch_mean = x.mean(dim=(0, 2, 3))  # [c]
             batch_var = x.var(dim=(0, 2, 3), unbiased=False)  # [c]
-            
+
             # 更新运行时统计量
             self.running_mean = (1 - self.momentum) * self.running_mean + self.momentum * batch_mean
             self.running_var = (1 - self.momentum) * self.running_var + self.momentum * batch_var
@@ -35,3 +35,6 @@ class BatchNorm2d(nn.Module):
         # 缩放和平移
         return x_normalized
 
+bn = BatchNorm2d(16)
+x = torch.randn(4,16,5,5)
+print(bn(x).shape)

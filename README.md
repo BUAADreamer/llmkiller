@@ -10,9 +10,9 @@
     - [x] MHCA
 * [基础机器学习算法](./machine_learning/)
     - [x] Linear Regression SGD
-    - [ ] K-Means
-    - [ ] Layer-Normalization
-    - [ ] Batch-Normalization
+    - [x] K-Means
+    - [x] Layer-Normalization
+    - [x] Batch-Normalization
 * [解码算法](./decode/)
     - [x] Greedy Search
     - [x] Temperature sampling

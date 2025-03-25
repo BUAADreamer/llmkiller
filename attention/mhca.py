@@ -2,7 +2,7 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-class CrossAttention(nn.Module):
+class MultiHeadCrossAttention(nn.Module):
     def __init__(self, dim, num_heads):
         super().__init__()
         assert dim%num_heads==0
@@ -38,7 +38,7 @@ class CrossAttention(nn.Module):
         return output
 
 
-model = CrossAttention(768, 12) # 以gpt2为例
+model = MultiHeadCrossAttention(768, 12) # 以gpt2为例
 q = torch.randn(2, 64, 768)
 k = torch.randn(2, 64, 768)
 v = torch.randn(2, 64, 768)
