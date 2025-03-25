@@ -7,20 +7,20 @@
     - [x] MQA
     - [x] GQA
     - [x] MHA + KVCache
-    - [x] CA
+    - [x] MHCA
 * [基础机器学习算法](./machine_learning/)
-    - [ ] 线性回归SGD
+    - [x] Linear Regression SGD
     - [ ] K-Means
     - [ ] Layer-Normalization
     - [ ] Batch-Normalization
 * [解码算法](./decode/)
-    - [x] greedy search
-    - [x] temperature search
-    - [x] top-k sampling
-    - [x] top-p (Nucleus) sampling
-    - [ ] beam search
+    - [x] Greedy Search
+    - [x] Temperature sampling
+    - [x] Top-K sampling
+    - [x] Top-P (Nucleus) sampling
+    - [ ] Beam Search
 * [神经网络](./neural_network/)
-    - [ ] backward propagation
+    - [x] MLP Regression SGD
     - [ ] CNN
     - [ ] RNN
     - [ ] LSTM
